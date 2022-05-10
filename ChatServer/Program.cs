@@ -17,10 +17,14 @@ builder.Services.AddSingleton<IDictionary<string, UserConnection>>(opt => new Di
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
+app.UseRouting();
+
 app.UseCors();
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapHub<ChatHub>("/chat");
 });
+
 
 app.Run();

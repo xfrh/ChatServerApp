@@ -25,7 +25,7 @@ namespace ChatServer.Hubs
             if (_connections.TryGetValue(Context.ConnectionId, out UserConnection userConnection))
             {
                 _connections.Remove(Context.ConnectionId);
-                await Clients.Group(userConnection.Room).SendAsync($"{userConnection.User} has left");
+                await Clients.Group(userConnection.Room).SendAsync("ReceiveMessage", _bot , $"{userConnection.User} has left");
                 SendUsersConnected(userConnection.Room); 
             }
         }
